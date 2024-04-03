@@ -38,7 +38,7 @@ export default {
 </script>
 
 <template>
-  <Header />
+  <Header @src="getApi" />
   <Main />
 </template>
 

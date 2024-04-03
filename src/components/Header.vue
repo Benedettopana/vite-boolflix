@@ -1,10 +1,23 @@
 <script>
 // import axios from "axios";
 // Importare store
+import { store } from "../data/store";
 export default {
   // Creare emits
   data() {
-    return {};
+    return {
+      store,
+      src: "",
+    };
+  },
+  methods: {
+    toSearch() {
+      store.queryparams = {
+        query: this.src,
+      };
+      this.src = "";
+      this.$emit("src");
+    },
   },
 };
 </script>
@@ -12,7 +25,7 @@ export default {
 <template>
   <header>
     <div class="container-fluid">
-      <div class="menu row row-cols-2 justify-content-around">
+      <div class="menu row row-cols-1 row-cols-sm-2 justify-content-sm-around">
         <div class="col logo">
           <h2 class="text-uppercase">Boolflix</h2>
         </div>
@@ -22,10 +35,10 @@ export default {
               class="form-control mx-2"
               type="text"
               placeholder="Select Character"
-              v-model="searchQuery"
-              @keyup.enter="searchCharacter"
+              v-model.trim="src"
+              @keyup.enter="toSearch"
             />
-            <div class="btn btn-danger">Search</div>
+            <div class="btn btn-danger" @click="toSearch">Cerca</div>
           </div>
         </div>
       </div>
@@ -49,8 +62,6 @@ header {
       display: flex;
       .src {
         width: 20%;
-      }
-      .btn {
       }
     }
   }
