@@ -1,5 +1,13 @@
 @use "./variables" as *;
 
 body {
-  background-color: gray;
+  background-color: $bg-body-color !important;
+  color: $color-text !important;
+  header {
+    color: $color-text;
+    background-color: $bg-header-color;
+  }
+  // main {
+
+  // }
 }
