@@ -1,8 +1,12 @@
 <script>
 import axios from "axios";
+// Components
+import Header from "./components/Header.vue";
 
 export default {
-  // components: {},
+  components: {
+    Header,
+  },
   data() {
     return {
       axios,
