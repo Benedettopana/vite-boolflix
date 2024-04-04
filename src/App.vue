@@ -17,29 +17,36 @@ export default {
   },
 
   methods: {
-    getApi() {
+    getApi(type) {
       axios
-        .get(store.apiUrl, {
+        .get(store.apiUrl + type, {
           params: store.queryparams,
         })
         .then((result) => {
-          store.filmList = result.data.results;
-          console.log("risultato ----->", store.filmList);
+          store[type] = result.data.results;
+          console.log("risultato ----->", store[type]);
         })
         .catch((error) => {
           console.log(error);
         });
     },
+
+    // faccio partire la ricerca
+    startSrc() {
+      this.getApi("movie");
+      this.getApi("tv");
+    },
   },
   mounted() {
-    this.getApi();
+    this.startSrc();
   },
 };
 </script>
 
 <template>
-  <Header @src="getApi" />
-  <Main />
+  <Header @toSearch="startSrc" />
+  <Main type="movie" />
+  <Main type="tv" />
 </template>
 
 <style lang="scss">

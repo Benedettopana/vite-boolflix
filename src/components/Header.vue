@@ -11,13 +11,13 @@ export default {
     };
   },
   methods: {
-    toSearch() {
-      store.queryparams = {
-        query: this.src,
-      };
-      this.src = "";
-      this.$emit("src");
-    },
+    // toSearch() {
+    //   store.queryparams = {
+    //     query: this.src,
+    //   };
+    //   this.src = "";
+    //   this.$emit("src");
+    // },
   },
 };
 </script>
@@ -35,10 +35,10 @@ export default {
               class="form-control mx-2"
               type="text"
               placeholder="Select Character"
-              v-model.trim="src"
-              @keyup.enter="toSearch"
+              v-model.trim="store.queryparams.query"
+              @keyup.enter="$emit('toSearch')"
             />
-            <div class="btn btn-danger" @click="toSearch">Cerca</div>
+            <div class="btn btn-danger" @click="$emit('toSearch')">Cerca</div>
           </div>
         </div>
       </div>
