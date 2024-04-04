@@ -6,20 +6,42 @@ export default {
   data() {
     return {
       flag: true,
+      isPoster: true,
+      stars: [],
     };
   },
 
-  // methods: {
-  //   getFlag(myFlag) {
-  //     if (this.flag.includes(myFlag)) {
-  //       return true;
-  //     } else {
-  //       return false;
-  //     }
-  //   },
-  // },
+  methods: {
+    getRating(myRating, name) {
+      this.stars = [];
+      console.log("film/serie ----->", name);
+      // Stelle
+      const fullStar = "fa-solid fa-star";
+      const halfStar = "fa-solid fa-star-half";
+      const zeroStar = "fa-regular fa-star";
+      let limit = myRating / 2;
+
+      let x = limit;
+      if (limit > 0.5) {
+        for (let i = 0; i <= limit; i++) {
+          if (x > 0.49 && x < 1) {
+            this.stars.push(halfStar);
+            i = limit;
+          } else if (x >= 1) {
+            x--;
+
+            this.stars.push(fullStar);
+          }
+        }
+      } else {
+        this.stars.push(zeroStar);
+      }
+      console.log("result->>>>>>>>> ", this.stars);
+      return this.stars;
+    },
+  },
   // mounted() {
-  //   this.getFlag(cardObj.original_language);
+  //   this.getRating(cardObj.vote_average);
   // },
 };
 </script>
@@ -29,7 +51,17 @@ export default {
               Spacca quando il titolo originale è più lungo-->
   <div class="col-3 my-1">
     <div class="card d-flex flex-column">
-      <!-- <img :src="image" :alt="originalName" /> -->
+      <img
+        v-if="isPoster"
+        :src="`https://image.tmdb.org/t/p/w342${cardObj.poster_path}`"
+        :alt="cardObj.title || cardObj.name"
+        @error="isPoster = false"
+      />
+      <img
+        v-else
+        src="../../../public/img/404imgnotfound.jpg"
+        alt="Img Not Found"
+      />
       <h5>{{ cardObj.title || cardObj.name }}</h5>
       <p>{{ cardObj.original_title || cardObj.original_name }}</p>
       <p>
@@ -43,7 +75,18 @@ export default {
         />
         <span v-else>{{ cardObj.original_language }}</span>
       </p>
-      <p>{{ cardObj.vote_average }}</p>
+      <!-- <p>{{ cardObj.vote_average }}</p> -->
+      <p class="d-flex rating">
+        <span
+          v-for="(element, index) in getRating(
+            cardObj.vote_average,
+            cardObj.title || cardObj.name
+          )"
+          :key="index"
+        >
+          <i :class="element"></i
+        ></span>
+      </p>
       <p class="desc">{{ cardObj.overview }}</p>
     </div>
   </div>
@@ -53,6 +96,12 @@ export default {
 @use "../../assets/scss/main.scss";
 @use "../../assets/scss/partials/variables" as *;
 
+.rating {
+  span {
+    font-size: 0.8rem;
+    color: $color-star;
+  }
+}
 .flag {
   width: 32px;
 }
