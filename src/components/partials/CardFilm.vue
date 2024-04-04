@@ -20,16 +20,13 @@ export default {
       const halfStar = "fa-solid fa-star-half";
       const zeroStar = "fa-regular fa-star";
       let limit = myRating / 2;
-
       let x = limit;
-      if (limit > 0.5) {
+      if (limit >= 0.5) {
         for (let i = 0; i <= limit; i++) {
           if (x > 0.49 && x < 1) {
             this.stars.push(halfStar);
-            i = limit;
           } else if (x >= 1) {
             x--;
-
             this.stars.push(fullStar);
           }
         }
