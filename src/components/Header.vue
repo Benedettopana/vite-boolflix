@@ -10,15 +10,7 @@ export default {
       src: "",
     };
   },
-  methods: {
-    // toSearch() {
-    //   store.queryparams = {
-    //     query: this.src,
-    //   };
-    //   this.src = "";
-    //   this.$emit("src");
-    // },
-  },
+  methods: {},
 };
 </script>
 
@@ -29,12 +21,12 @@ export default {
         <div class="col logo">
           <h2 class="text-uppercase">Boolflix</h2>
         </div>
-        <div class="col-3">
-          <div class="src-Bar d-flex justify-content-between mt-1">
+        <div class="col">
+          <div class="src-bar d-flex justify-content-between mt-1">
             <input
               class="form-control mx-2"
               type="text"
-              placeholder="Select Character"
+              placeholder="Search"
               v-model.trim="store.queryparams.query"
               @keyup.enter="$emit('toSearch')"
             />

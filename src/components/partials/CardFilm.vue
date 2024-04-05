@@ -124,18 +124,6 @@ export default {
   animation: info-movement-out 1s;
 }
 
-// .colonna:hover .title {
-//   height: 100%;
-//
-//   animation: info-movement 1s;
-//   animation-fill-mode: forwards;
-// }
-// .colonna:not(:hover) .title {
-//   height: 7%;
-//
-//   animation: info-movement-out 1s;
-// }
-
 .card {
   position: relative;
   height: 400px;
@@ -150,8 +138,7 @@ export default {
     left: 0;
     padding: 2px 5px;
   }
-  &:hover .animationOut {
-  }
+
   .front {
     height: 398px;
     // object-fit: contain;
