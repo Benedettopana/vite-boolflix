@@ -41,12 +41,10 @@ export default {
 </script>
 
 <template>
-  <!-- FIXME: Sistemare altezza fissa card
-              Spacca quando il titolo originale è più lungo-->
   <div class="col-3 my-1 colonna">
     <div class="card d-flex flex-column mb-3">
       <div class="title">
-        <h5>{{ cardObj.title || cardObj.name }}</h5>
+        <h5 class="text-center">{{ cardObj.title || cardObj.name }}</h5>
         <!-- animazione -->
         <p>{{ cardObj.original_title || cardObj.original_name }}</p>
         <p>
@@ -62,6 +60,7 @@ export default {
         </p>
         <!-- <p>{{ cardObj.vote_average }}</p> -->
         <p class="d-flex rating">
+          <span class="text-white">Rating: </span>
           <span
             v-for="(element, index) in getRating(
               cardObj.vote_average,
@@ -104,21 +103,23 @@ export default {
 
 .card {
   position: relative;
+  height: 400px;
   .title {
     background-color: $bg-card-color;
     color: $color-text;
     position: absolute;
     width: 100%;
-    height: 4.7%;
+    height: 7%;
     overflow: hidden;
     top: 0;
     left: 0;
+    padding: 2px 5px;
   }
   .front {
-    height: 50%;
+    height: 398px;
+    // object-fit: contain;
     img {
-      // height: 100%;
-      height: 500px;
+      // height: 40%;
       object-fit: contain;
       overflow: hidden;
     }
@@ -129,7 +130,7 @@ export default {
     color: $color-text;
     display: none;
     position: absolute;
-    bottom: 95.3%;
+    bottom: 93%;
     left: 0;
     transition: all 2s;
     overflow: hidden;
@@ -142,7 +143,7 @@ export default {
     }
   }
   .flag {
-    width: 32px;
+    width: 23px;
   }
   .desc {
     height: 70%;
@@ -154,7 +155,7 @@ export default {
 
 @keyframes info-movement {
   0% {
-    height: 4.7%;
+    height: 7%;
   }
 
   100% {

@@ -13,6 +13,7 @@ export default {
   data() {
     return {
       axios,
+      store,
     };
   },
 
@@ -45,8 +46,8 @@ export default {
 
 <template>
   <Header @toSearch="startSrc" />
-  <Main type="movie" />
-  <Main type="tv" />
+  <Main v-show="store.movie.length > 0" type="movie" />
+  <Main v-show="store.tv.length > 0" type="tv" />
 </template>
 
 <style lang="scss">
