@@ -29,6 +29,7 @@ export default {
         .then((result) => {
           store[type] = result.data.results;
           console.log("risultato ----->", store[type]);
+          store.queryparams.query = "";
         })
         .catch((error) => {
           console.log(error);
@@ -64,7 +65,7 @@ export default {
 
 <template>
   <Header @toSearch="startSrc" />
-  <Hot v-show="store.movie.length == 0 || store.tv.length == 0" />
+  <Hot v-show="store.movie.length == 0 && store.tv.length == 0" />
   <Main v-show="store.movie.length > 0" type="movie" />
   <Main v-show="store.tv.length > 0" type="tv" />
 </template>
