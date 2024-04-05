@@ -16,9 +16,6 @@ export default {
     SwiperSlide,
     Card,
   },
-  // props: {
-
-  // },
   data() {
     return {
       store,
@@ -35,7 +32,6 @@ export default {
       :slidesPerView="6"
       :spaceBetween="30"
       :freeMode="true"
-      :pagination="{ clickable: true }"
       :modules="modules"
       class="mySwiper"
     >
@@ -59,7 +55,8 @@ export default {
 
 .swiper {
   width: 100%;
-  height: 100%;
+
+  // height: 100%;
 }
 .swiper-slide {
   text-align: center;
@@ -70,10 +67,10 @@ export default {
   justify-content: center;
   align-items: center;
 }
-// .swiper-slide img {
-//   display: block;
-//   width: 100%;
-//   height: 100%;
-//   object-fit: cover;
-// }
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 </style>

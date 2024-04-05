@@ -143,8 +143,8 @@ export default {
     height: 398px;
     // object-fit: contain;
     img {
-      // height: 40%;
-      object-fit: contain;
+      height: 100%;
+      object-fit: cover;
       overflow: hidden;
     }
   }
