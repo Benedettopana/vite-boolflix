@@ -14,6 +14,8 @@ export default {
     };
   },
 
+  methods: {},
+
   computed: {
     title() {
       return this.type === "movie" ? "Film" : "Serie Tv";
@@ -23,7 +25,7 @@ export default {
 </script>
 <template>
   <main>
-    <div class="container-xl my-5">
+    <div class="container-xl my-5 page">
       <h3>{{ title }}</h3>
       <div
         class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 mt-3"

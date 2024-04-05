@@ -8,6 +8,9 @@ export default {
       flag: true,
       isPoster: true,
       stars: [],
+      avvio: true,
+      dentro: false,
+      fuori: "",
     };
   },
 
@@ -36,14 +39,29 @@ export default {
       console.log("result->>>>>>>>> ", this.stars);
       return this.stars;
     },
+
+    whereIs() {
+      if (this.avvio) {
+        this.fuori = false;
+        this.dentro = !this.dentro;
+        this.avvio = false;
+      } else {
+        this.dentro = !this.dentro;
+        this.fuori = !this.fuori;
+      }
+    },
   },
 };
 </script>
 
 <template>
   <div class="col-3 my-1 colonna">
-    <div class="card d-flex flex-column mb-3">
-      <div class="title">
+    <div
+      class="card d-flex flex-column mb-3"
+      @mouseenter="whereIs"
+      @mouseleave="whereIs"
+    >
+      <div class="title" :class="{ animationIn: dentro, animationOut: fuori }">
         <h5 class="text-center">{{ cardObj.title || cardObj.name }}</h5>
         <!-- animazione -->
         <p>{{ cardObj.original_title || cardObj.original_name }}</p>
@@ -95,11 +113,28 @@ export default {
 @use "../../assets/scss/main.scss";
 @use "../../assets/scss/partials/variables" as *;
 
-.colonna:hover .title {
+// ENTRO
+.colonna .card .title.animationIn {
   height: 100%;
-  background-color: $bg-card-color;
   animation: info-movement 1s;
 }
+// ESCO
+.colonna .card .title.animationOut {
+  height: 7%;
+  animation: info-movement-out 1s;
+}
+
+// .colonna:hover .title {
+//   height: 100%;
+//
+//   animation: info-movement 1s;
+//   animation-fill-mode: forwards;
+// }
+// .colonna:not(:hover) .title {
+//   height: 7%;
+//
+//   animation: info-movement-out 1s;
+// }
 
 .card {
   position: relative;
@@ -115,6 +150,8 @@ export default {
     left: 0;
     padding: 2px 5px;
   }
+  &:hover .animationOut {
+  }
   .front {
     height: 398px;
     // object-fit: contain;
@@ -126,6 +163,7 @@ export default {
   }
 
   .info {
+    opacity: 0;
     height: 100%;
     color: $color-text;
     display: none;
@@ -154,12 +192,22 @@ export default {
 }
 
 @keyframes info-movement {
-  0% {
+  from {
     height: 7%;
   }
 
-  100% {
+  to {
     height: 100%;
+  }
+}
+
+@keyframes info-movement-out {
+  from {
+    height: 100%;
+  }
+
+  to {
+    height: 7%;
   }
 }
 </style>
